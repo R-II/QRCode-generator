@@ -1,27 +1,31 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../fonts/SourceSansPro-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 * {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 300;
 }
 
 body {
-  display: flex;
-  justify-content: center;
   text-align: center;
-
   color: #fff;
-  background: rgb(6, 147, 232);
-  background: linear-gradient(
-    90deg,
-    rgba(6, 147, 232, 1) 38%,
-    rgba(0, 112, 255, 1) 79%
-  );
+  background: #006699;
+  padding: 15px 15px 30px 15px;
+  margin: 0 auto;
+  max-width: 300px;
 }
 
 input {
   border: 2px solid #000;
   border-color: #fff;
   transition: 1s;
+  width: calc(100% - 8px);
+  font-size: 25px;
+  margin-bottom: 15px;
 }
 
 input:hover {
@@ -29,40 +33,38 @@ input:hover {
 }
 
 #app h1 {
-  font-size: 48px;
+  font-size: 30px;
   transition: 1s;
   cursor: default;
+  margin-right: 50px;
+  line-height: normal;
+  margin-top: 0px;
+  text-align: left;
 }
 
 #app h1:hover {
   color: rgb(40, 42, 43);
-  color: linear-gradient(90deg, rgb(0, 0, 0) 38%, rgbrgb(0, 0, 0) %);
 }
 
-input {
-  font-size: 2em;
-  margin-bottom: 30px;
-}
-
-.output {
-  border: 1px solid #222;
-  padding: 30px 15px;
-  background-color: #0006;
-}
 
 #footer {
   display: block;
-  align-items: center;
-  justify-content: center;
-  padding: 0 35px;
+  padding: 15px;
   background-color: #fff;
-  box-shadow: 0 2px 23px 0 rgba(0, 0, 0, 0.1), 0 2px 49px 0 rgba(0, 0, 0, 0.06);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 
 #footer h3 {
-  font-size: 22px;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
 }
 
+#footer,
 #footer a {
   text-decoration: none;
   color: black;
@@ -72,4 +74,64 @@ input {
 #footer a:hover {
   color: #00a0c6;
   cursor: pointer;
+}
+
+.btn {
+  background: #fff;
+  color: #006699;
+  padding: 5px 8px;
+  font-size: 30px;
+  text-decoration: none;
+  display: inline-block;
+  transition: 1s;
+  width: 284px;
+  border: none;
+  margin-top: 15px;
+}
+.btn:hover {
+  filter: saturate(0%) contrast(100%);
+}
+
+.languages {
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 15px 15px 15px 5px;
+  background: #fff;
+  transition: 1s;
+}
+.languages.hidden {
+  right: -155px;
+}
+.languages span {
+  cursor: pointer;
+  margin-left: 15px;
+}
+.openLangBar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 15px 15px 15px 15px;
+  cursor: pointer;
+}
+.qrcode {
+  width: 300px;
+}
+.colors {
+  width: 270px;
+  background: #fff;
+  transition: 1s;
+  padding: 15px;
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
+}
+.color {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+  margin-bottom: 0;
 }
