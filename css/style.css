@@ -103,7 +103,7 @@ input:hover {
   right: 0;
   top: 0;
   padding: 15px 15px 15px 5px;
-  background: #fff;
+  background: #eaeaea;
   transition: 1s;
 }
 .languages.hidden {

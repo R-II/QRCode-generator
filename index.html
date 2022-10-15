@@ -6,9 +6,16 @@
     <script src="js/verte.js"></script>
     <script src="js/vue.min.js"></script>
     <script src="js/qr-code-styling.js"></script>
+    <title>QRCode</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/verte.css">
-    <title>📸 🔳 QRCode</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#006699">
+    <meta name="msapplication-TileColor" content="#006699">
+    <meta name="theme-color" content="#ffffff">
   </head>
 
   <body>
@@ -20,21 +27,21 @@
       <div :class="langBar">
         <span class="flag" @click="changeLang('fr')">
           <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-fr" viewBox="0 0 640 480" width="50">
-          <g fill-rule="evenodd" stroke-width="1pt">
-            <path fill="#fff" d="M0 0h640v480H0z"/>
-            <path fill="#002654" d="M0 0h213.3v480H0z"/>
-            <path fill="#ce1126" d="M426.7 0H640v480H426.7z"/>
-          </g>
-        </svg>
+            <g fill-rule="evenodd" stroke-width="1pt">
+              <path fill="#fff" d="M0 0h640v480H0z"/>
+              <path fill="#002654" d="M0 0h213.3v480H0z"/>
+              <path fill="#ce1126" d="M426.7 0H640v480H426.7z"/>
+            </g>
+          </svg>
         </span>
         <span class="flag" @click="changeLang('en')">
           <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gb" viewBox="0 0 640 480" width="50">
-          <path fill="#012169" d="M0 0h640v480H0z"/>
-          <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/>
-          <path fill="#C8102E" d="m424 281 216 159v40L369 281h55zm-184 20 6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/>
-          <path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/>
-          <path fill="#C8102E" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/>
-        </svg>
+            <path fill="#012169" d="M0 0h640v480H0z"/>
+            <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/>
+            <path fill="#C8102E" d="m424 281 216 159v40L369 281h55zm-184 20 6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/>
+            <path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/>
+            <path fill="#C8102E" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/>
+          </svg>
         </span>
         <span class="flag" @click="changeLang('jp')">
           <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-jp" viewBox="0 0 640 480" width="50">
@@ -252,6 +259,11 @@
           this.generateNewQRCode()
           if (window.localStorage.getItem('lang')) {
             this.lang = window.localStorage.getItem('lang')
+          } else {
+            let lg = this.detectNavigatorPreferedLanguage().substring(0, 2).toLowerCase()
+            if (lg === 'fr' || lg === 'en' || lg === 'jp') {
+              this.lang = lg
+            }
           }
           // if a file is dragged on the page, change body class to "drag-in"
           document.body.addEventListener('dragover', (e) => {
@@ -297,6 +309,31 @@
           }
         },
         methods: {
+          detectNavigatorPreferedLanguage() {
+            let nav = window.navigator,
+            browserLanguagePropertyKeys = ['language', 'browserLanguage', 'systemLanguage', 'userLanguage'],
+            i,
+            language
+
+            // support for HTML 5.1 "navigator.languages"
+            if (Array.isArray(nav.languages)) {
+              for (i = 0; i < nav.languages.length; i++) {
+                language = nav.languages[i]
+                if (language && language.length) {
+                  return language
+                }
+              }
+            }
+
+            // support for other well known properties in browsers
+            for (i = 0; i < browserLanguagePropertyKeys.length; i++) {
+              language = nav[browserLanguagePropertyKeys[i]]
+              if (language && language.length) {
+                return language
+              }
+            }
+            return 'en';
+          },
           onFileChange(e) {
             const file = e.target.files[0];
             const that = this
