@@ -1,16 +1,19 @@
-# QRCode generator
+# QRCode factory
 
 ## :bookmark: About the developer
 
 <h4 align="left">
-    by <a href="https://www.linkedin.com/in/juanpablodev/" target="_blank">Juan Pablo</a>
+    by <a href="https://www.onlinecreation.pro">OnlineCreation</a> 
 </h4>
+<small align="left">
+    Based on <a href="https://github.com/JuanPabllo/QRCode-generator">QRCode-generator</a> by Juan Pablo
+</small>
 
 ## :bookmark: About the project
 
 Create <strong> QRCode </strong> easily with this VueJs application.
 
-- Click here to access: [QRCode generator](https://juanpabllo.github.io/QRCode-generator/)
+- Click here to access: [QRCode generator](https://qrcode.onlinecreation.pro/)
 
 ## 🚀 Technologies used
 
@@ -20,17 +23,8 @@ This project was developed with the following technologies:
 - [VueJs](https://vuejs.org/)
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
-- [QRious](https://github.com/neocotic/qrious)
-
-## Screenshot
-
-<h3>Point your phone at the image 😉</h3>
-<img alt="photo1" title="photo1" src="./.github/photo1.png">
+- [QR Code Styling](https://github.com/kozakdenys/qr-code-styling)
 
 ## :memo: License
 
 This project is under MIT license.
-
-<h4 align="center">
-    by <a href="https://www.linkedin.com/in/juanpablodev/" target="_blank">Juan Pablo</a>
-</h4>
