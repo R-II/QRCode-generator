@@ -3,9 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <script src="js/verte.js"></script>
     <script src="js/vue.min.js"></script>
-    <script src="js/qrious.min.js"></script>
+    <script src="js/qr-code-styling.js"></script>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/verte.css">
     <title>📸 🔳 QRCode</title>
   </head>
 
@@ -16,7 +18,8 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="50"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M239.4 340.1C241.1 345.1 239.1 349.7 235 351.4C230.9 353.1 226.3 351.1 224.6 347L206.1 303.1H113L95.4 347C93.73 351.1 89.06 353.1 84.97 351.4C80.88 349.7 78.92 345.1 80.6 340.1L152.6 164.1C153.8 161.1 156.8 160 160 160C163.2 160 166.2 161.1 167.4 164.1L239.4 340.1zM119.6 288H200.4L160 189.1L119.6 288zM488 192H560C564.4 192 568 195.6 568 200C568 204.4 564.4 208 560 208H549.8L541.5 232.8C531.7 262.2 514.8 288.3 492.6 309.1C497.3 312.4 502.2 315.5 507.2 318.3L539.1 337.1C543.8 339.2 545.1 344.1 542.9 347.1C540.8 351.8 535.9 353.1 532 350.9L499.3 332.2C492.6 328.4 486.2 324.3 480 319.8C472.2 325.9 463.9 331.4 455 336.2L427.8 351C423.1 353.1 419.1 351.7 416.1 347.8C414.9 343.1 416.3 339.1 420.2 336.1L447.4 322.1C454.3 318.4 460.8 314.2 467.1 309.5C463.1 306.1 459.2 302.5 455.4 298.7L426.3 269.7C423.2 266.5 423.2 261.5 426.3 258.3C429.5 255.2 434.5 255.2 437.7 258.3L466.7 287.4C470.9 291.5 475.2 295.5 479.7 299.2C500.9 279.1 517.1 255.4 526.3 227.8L532.9 208H400C395.6 208 392 204.4 392 200C392 195.6 395.6 192 400 192H472V168C472 163.6 475.6 160 480 160C484.4 160 488 163.6 488 168L488 192zM640 384C640 419.3 611.3 448 576 448H64C28.65 448 0 419.3 0 384V128C0 92.65 28.65 64 64 64H576C611.3 64 640 92.65 640 128V384zM312 80H64C37.49 80 16 101.5 16 128V384C16 410.5 37.49 432 64 432H312V80zM328 80V432H576C602.5 432 624 410.5 624 384V128C624 101.5 602.5 80 576 80H328z" fill="#fff"/></svg>
       </div>
       <div :class="langBar">
-        <span class="flag" @click="lang = 'fr';toggleLangBar()"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-fr" viewBox="0 0 640 480" width="50">
+        <span class="flag" @click="changeLang('fr')">
+          <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-fr" viewBox="0 0 640 480" width="50">
           <g fill-rule="evenodd" stroke-width="1pt">
             <path fill="#fff" d="M0 0h640v480H0z"/>
             <path fill="#002654" d="M0 0h213.3v480H0z"/>
@@ -24,13 +27,27 @@
           </g>
         </svg>
         </span>
-        <span class="flag" @click="lang = 'en';toggleLangBar()"><svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gb" viewBox="0 0 640 480" width="50">
+        <span class="flag" @click="changeLang('en')">
+          <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gb" viewBox="0 0 640 480" width="50">
           <path fill="#012169" d="M0 0h640v480H0z"/>
           <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/>
           <path fill="#C8102E" d="m424 281 216 159v40L369 281h55zm-184 20 6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/>
           <path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/>
           <path fill="#C8102E" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/>
         </svg>
+        </span>
+        <span class="flag" @click="changeLang('jp')">
+          <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-jp" viewBox="0 0 640 480" width="50">
+            <defs>
+              <clipPath id="a">
+                <path fill-opacity=".7" d="M-88 32h640v480H-88z"/>
+              </clipPath>
+            </defs>
+            <g fill-rule="evenodd" stroke-width="1pt" clip-path="url(#a)" transform="translate(88 -32)">
+              <path fill="#fff" d="M-128 32h720v480h-720z"/>
+              <circle cx="523.1" cy="344.1" r="194.9" fill="#bc002d" transform="translate(-168.4 8.6) scale(.76554)"/>
+            </g>
+          </svg>
         </span>
       </div>
       <div>
@@ -39,75 +56,265 @@
           :placeholder="t[lang]['fieldPlaceHolder']"
           v-model="text"
           class="field"
+          @change="generateNewQRCode"
+          @keyup="generateNewQRCode"
         />
       </div>
 
       <div v-if="isValidHttpUrl(text)" class="output">
         <div class="colors">
-          <div class="color" @click="color = '#000000'" style="background-color: #000000;">
+          <div v-for="theColor in colorList" :key="color" class="color" @click="changeColor(theColor)" :style="'background-color: ' + theColor"></div>
+          <div v-for="theGradient in gradientList" :key="gradient" class="color" @click="changeGradient(theGradient.color1, theGradient.color2, theGradient.type, theGradient.rotation)" :style="'background-image: linear-gradient(' + theGradient.rotation + 'deg, ' + theGradient.color1 + ' 0%, ' + theGradient.color2 + ' 100%)'"></div>
+          
+          <verte picker="square" v-model="customColor" enableAlpha="false" model="rgb">
+            <div class="color-btn" :style="this.customColor && this.customColor != 'rgb(0,0,0)'?'color: #fff; background-color: ' + this.customColor : ''">{{ t[lang]['colorDialog'] }}</div>
+          </verte>
+        </div>
+        <div class="styles">
+          <div class="style-item" @click="style = 'square'; generateNewQRCode()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="35">
+              <rect width="640" height="640" :fill="style=='square'?'#000000':'#666'" />
+            </svg>
           </div>
-          <div class="color" @click="color = '#991126'" style="background-color: #991126">
+          <div class="style-item" @click="style = 'round'; generateNewQRCode()" >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="35">
+              <circle cx="320" cy="320" r="320" :fill="style=='round'?'#000000':'#666'"/>
+            </svg>
           </div>
-          <div class="color" @click="color = '#009966'" style="background-color: #009966">
-          </div>
-          <div class="color" @click="color = '#006699'" style="background-color: #006699">
+          <div class="style-item" @click="style = 'lines'; generateNewQRCode()" >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="35">
+              <g :fill="style=='lines'?'#000000':'#666'">
+                <g transform="matrix(0 -5.13 5.13 0 107.25 320)"  >
+                  <path transform=" translate(-62.2, -20.73)" d="m 20.013628 0 l 84.37401 0 l 0 0 c 11.053215 -1.04756605e-14 20.013626 9.282301 20.013626 20.7326 c 0 11.450296 -8.960411 20.7326 -20.013626 20.7326 l -84.37401 0 l 0 0 c -11.053222 0 -20.013628 -9.282303 -20.013628 -20.7326 c -5.2380687e-15 -11.450298 8.960406 -20.7326 20.013628 -20.7326 z"/>
+                </g>
+                <g transform="matrix(5.13 0 0 5.13 320.3 532.85)"  >
+                  <path transform=" translate(-62.2, -20.73)" d="m 20.013628 0 l 84.37401 0 l 0 0 c 11.053215 -1.04756605e-14 20.013626 9.282301 20.013626 20.7326 c 0 11.450296 -8.960411 20.7326 -20.013626 20.7326 l -84.37401 0 l 0 0 c -11.053222 0 -20.013628 -9.282303 -20.013628 -20.7326 c -5.2380687e-15 -11.450298 8.960406 -20.7326 20.013628 -20.7326 z"/>
+                </g>
+                <g transform="matrix(0 -5.13 5.13 0 533.3 318.85)"  >
+                  <path transform=" translate(-62.2, -20.73)" d="m 20.013628 0 l 84.37401 0 l 0 0 c 11.053215 -1.04756605e-14 20.013626 9.282301 20.013626 20.7326 c 0 11.450296 -8.960411 20.7326 -20.013626 20.7326 l -84.37401 0 l 0 0 c -11.053222 0 -20.013628 -9.282303 -20.013628 -20.7326 c -5.2380687e-15 -11.450298 8.960406 -20.7326 20.013628 -20.7326 z" />
+                </g>
+              </g>
+            </svg>
           </div>
         </div>
-        <img :src="newQRCode" alt="QRCode" class="qrcode"/><br>
-        <a :href="newQRCode" download="qrcode.png" class="btn">
+        <div class="logo">
+          <label><input type="checkbox" v-model="hasLogo" @change="generateNewQRCode" /> {{ t[lang]['logo'] }}</label>
+          <div 
+            :class="hasLogo?'logo-visible':'logo-hidden'"
+          >
+            <label for="logoFile">
+              <img v-if="this.logo" :src="this.logo" class="logo-preview">
+              <span v-else>{{ t[lang]['logoFile'] }}</span>
+            </label>
+            <div class="dropin">
+              ⬇
+            </div>
+            <input
+              type="file"
+              accept="image/png, image/jpeg, image/gif, image/svg+xml, image/webp"
+              @change="onFileChange"
+              class="file-input"
+              id="logoFile"
+            >
+          </div>
+        </div>
+        <img :src="qrcodeImage" alt="QRCode" class="qrcode"/>
+        <div class="warn-contrast" v-if="!darkEnough">
+          ⚠️ {{ t[lang]['notDarkEnough'] }}
+        </div>
+        <a :href="qrcodeImage" download="qrcode.png" class="btn">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M245.4 379.1C248.4 382.7 252.2 384 256 384s7.594-1.344 10.62-4.047l144-128c6.594-5.859 7.219-15.98 1.344-22.58c-5.875-6.625-16.06-7.234-22.59-1.328L272 332.4V16C272 7.156 264.8 0 256 0S240 7.156 240 16v316.4L122.6 228C116.1 222.1 105.9 222.8 100 229.4C94.16 235.1 94.78 246.1 101.4 251.1L245.4 379.1zM448 320h-48c-8.836 0-16 7.162-16 16c0 8.836 7.164 16 16 16H448c17.67 0 32 14.33 32 32v64c0 17.67-14.33 32-32 32H64c-17.67 0-32-14.33-32-32v-64c0-17.67 14.33-32 32-32h48C120.8 352 128 344.8 128 336C128 327.2 120.8 320 112 320H64c-35.35 0-64 28.65-64 64v64c0 35.35 28.65 64 64 64h384c35.35 0 64-28.65 64-64v-64C512 348.7 483.3 320 448 320zM440 416c0-13.25-10.75-24-24-24s-24 10.75-24 24s10.75 24 24 24S440 429.3 440 416z" fill="#006699"/></svg>
           {{ t[lang]['download'] }}
         </a>
+      </div>
       <div v-else-if="text" class="output">
         ⚠️ {{ t[lang]['notUrl'] }}
       </div>
 
-      <div id="footer">
-          <h3 v-html="t[lang]['footer']" />
-        </a>
-      </div>
+      <footer id="footer">
+          <span v-html="t[lang]['footer']" />
+      </footer>
     </div>
     <script>
       new Vue({
         el: "#app",
+        components: { Verte },
         data: {
-          text: "https://www.onlinecreation.pro",
+          text: "",
           lang: "en",
           langBar: "languages hidden",
-          qrcode: new QRious({ size: 500, level: 'H' }),
+          style: "round",
+          logo: "",
+          hasLogo: false,
+          customColor: false,
+          colorList: [
+            '#000000',
+            '#991126',
+            '#009966',
+            '#006699',
+          ],
+          gradientList: [
+            {
+              'color1': '#991126', 
+              'color2': '#009966', 
+              'type': 'linear', 
+              rotation: 90
+            },
+            {
+              'color1': '#006699', 
+              'color2': '#009966', 
+              'type': 'linear', 
+              rotation: 90
+            },
+            {
+              'color1': '#991126', 
+              'color2': '#006699', 
+              'type': 'linear', 
+              rotation: 90
+            },
+            {
+              'color1': '#009966', 
+              'color2': '#006699', 
+              'type': 'linear', 
+              rotation: 90
+            },
+            {
+              'color1': '#006699', 
+              'color2': '#991126', 
+              'type': 'linear', 
+              rotation: 90
+            },
+            {
+              'color1': '#009966', 
+              'color2': '#991126', 
+              'type': 'linear', 
+              rotation: 90
+            },
+          ],
+          qrcodeOptions: { 
+            width: 1024, 
+            height: 1024, 
+            type: 'png', 
+            qrcodeOptions: {},
+            cornersSquareOptions: {},
+            cornersDotOptions: {},
+            dotsOptions: {},
+            margin: 5,
+            imageOptions: {
+              margin: 5, 
+              crossOrigin: 'anonymous'
+            }, 
+            qrOptions: {
+              errorCorrectionLevel: 'H' 
+            }
+          },
+          qrcode: new QRCodeStyling(),
+          qrcodeImage: 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=',
           color: '#000000',
+          gradient: false,
           t: {
             "fr": {
               "title": "L'usine à QRCode",
-              "footer": "Conception par <a href='https://www.linkedin.com/in/juanpablodev/' target='_blank' rel='noopener noreferrer'>Juan Pablo</a> et <a href='https://www.onlinecreation.pro/' target='_blank' rel='noopener noreferrer'> <svg aria-hidden='true' focusable='false' data-prefix='fak' data-icon='onlinecreation' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' class='flex-grow-1 svg-inline--fa fa-onlinecreation fa-3x' style='width: 1em;'><path fill='currentColor' d='M32.64 479.68h33.696L32.64 446.176v33.504zM479.36 32.32H32.64v350.688l94.4 93.824a29.994 29.994 0 012.496 2.848h38.528V305.952c0-14.144 10.08-25.632 22.496-25.632 12.384 0 22.464 11.488 22.464 25.632V479.68h39.488a25.753 25.753 0 012.464-2.848l127.712-126.88c10.08-10.016 25.344-11.072 34.144-2.336 8.768 8.704 7.712 23.904-2.368 33.888L315.68 479.68h163.68V32.32z' class='' fill='#006699'></path></svg> OnlineCreation</a>",
+              "footer": "Conception par <a href='https://www.onlinecreation.pro/' target='_blank' rel='noopener noreferrer'> <svg aria-hidden='true' focusable='false' data-prefix='fak' data-icon='onlinecreation' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' class='flex-grow-1 svg-inline--fa fa-onlinecreation fa-3x' style='width: 1em;'><path fill='currentColor' d='M32.64 479.68h33.696L32.64 446.176v33.504zM479.36 32.32H32.64v350.688l94.4 93.824a29.994 29.994 0 012.496 2.848h38.528V305.952c0-14.144 10.08-25.632 22.496-25.632 12.384 0 22.464 11.488 22.464 25.632V479.68h39.488a25.753 25.753 0 012.464-2.848l127.712-126.88c10.08-10.016 25.344-11.072 34.144-2.336 8.768 8.704 7.712 23.904-2.368 33.888L315.68 479.68h163.68V32.32z' class='' fill='#006699'></path></svg> OnlineCreation</a>, basé sur les travaux de <a href='https://www.linkedin.com/in/juanpablodev/' target='_blank' rel='noopener noreferrer'>Juan Pablo</a>",
               "fieldPlaceHolder": "Saisissez une URL",
               "notUrl": "Ceci n'est pas une URL",
-              "download": "Télécharger"
+              "download": "Télécharger",
+              "colorDialog": "Autre",
+              "notDarkEnough": "La couleur n'est pas assez sombre.",
+              "logo": "Insérer un logo",
+              "logoFile": "Parcourir",
             },
             "en": {
-              "title": "QRCode Generator",
-              "footer": "Designed by <a href='https://www.linkedin.com/in/juanpablodev/' target='_blank' rel='noopener noreferrer'>Juan Pablo</a> and <a href='https://www.onlinecreation.pro/' target='_blank' rel='noopener noreferrer'><a href='https://www.onlinecreation.pro/' target='_blank' rel='noopener noreferrer'> <svg aria-hidden='true' focusable='false' data-prefix='fak' data-icon='onlinecreation' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' class='flex-grow-1 svg-inline--fa fa-onlinecreation fa-3x' style='width: 1em;'><path fill='currentColor' d='M32.64 479.68h33.696L32.64 446.176v33.504zM479.36 32.32H32.64v350.688l94.4 93.824a29.994 29.994 0 012.496 2.848h38.528V305.952c0-14.144 10.08-25.632 22.496-25.632 12.384 0 22.464 11.488 22.464 25.632V479.68h39.488a25.753 25.753 0 012.464-2.848l127.712-126.88c10.08-10.016 25.344-11.072 34.144-2.336 8.768 8.704 7.712 23.904-2.368 33.888L315.68 479.68h163.68V32.32z' class='' fill='#006699'></path></svg> OnlineCreation</a>",
+              "title": "QRCode Factory",
+              "footer": "Designed by <a href='https://www.onlinecreation.pro/' target='_blank' rel='noopener noreferrer'><a href='https://www.onlinecreation.pro/' target='_blank' rel='noopener noreferrer'> <svg aria-hidden='true' focusable='false' data-prefix='fak' data-icon='onlinecreation' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' class='flex-grow-1 svg-inline--fa fa-onlinecreation fa-3x' style='width: 1em;'><path fill='currentColor' d='M32.64 479.68h33.696L32.64 446.176v33.504zM479.36 32.32H32.64v350.688l94.4 93.824a29.994 29.994 0 012.496 2.848h38.528V305.952c0-14.144 10.08-25.632 22.496-25.632 12.384 0 22.464 11.488 22.464 25.632V479.68h39.488a25.753 25.753 0 012.464-2.848l127.712-126.88c10.08-10.016 25.344-11.072 34.144-2.336 8.768 8.704 7.712 23.904-2.368 33.888L315.68 479.68h163.68V32.32z' class='' fill='#006699'></path></svg> OnlineCreation</a>, based on the work of <a href='https://www.linkedin.com/in/juanpablodev/' target='_blank' rel='noopener noreferrer'>Juan Pablo</a>",
               "fieldPlaceHolder": "Please type in a URL",
               "notUrl": "This is not a URL",
-              "download": "Download"
+              "download": "Download",
+              "colorDialog": "Other",
+              "notDarkEnough": "The color is not dark enough.",
+              "logo": "Insert a logo",
+              "logoFile": "Browse",
+            },
+            "jp": {
+              "title": "QRコード Factory",
+              "footer": "デザイン： <a href='https://www.onlinecreation.pro/' target='_blank' rel='noopener noreferrer'><a href='https://www.onlinecreation.pro/' target='_blank' rel='noopener noreferrer'> <svg aria-hidden='true' focusable='false' data-prefix='fak' data-icon='onlinecreation' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' class='flex-grow-1 svg-inline--fa fa-onlinecreation fa-3x' style='width: 1em;'><path fill='currentColor' d='M32.64 479.68h33.696L32.64 446.176v33.504zM479.36 32.32H32.64v350.688l94.4 93.824a29.994 29.994 0 012.496 2.848h38.528V305.952c0-14.144 10.08-25.632 22.496-25.632 12.384 0 22.464 11.488 22.464 25.632V479.68h39.488a25.753 25.753 0 012.464-2.848l127.712-126.88c10.08-10.016 25.344-11.072 34.144-2.336 8.768 8.704 7.712 23.904-2.368 33.888L315.68 479.68h163.68V32.32z' class='' fill='#006699'></path></svg> OnlineCreation</a>。<a href='https://www.linkedin.com/in/juanpablodev/' target='_blank' rel='noopener noreferrer'>Juan Pablo</a> の作品をベースにした",
+              "fieldPlaceHolder": "URLを入力してください。",
+              "notUrl": "URLではありません。",
+              "download": "ダウンロード",
+              "colorDialog": "色",
+              "notDarkEnough": "色が濃くない。",
+              "logo": "ロゴを挿入する。",
+              "logoFile": "ブラウズ",
             }
           }
         },
-        computed: {
-          newQRCode() {
-            if (this.isValidHttpUrl(this.text)) {
-              this.qrcode.value = this.text
-              if (this.color) {
-                this.qrcode.foreground = this.color
-              }
-              return this.qrcode.toDataURL()
-            } else {
-              // Empty image
-              return 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA='
+        mounted () {
+          this.generateNewQRCode()
+          if (window.localStorage.getItem('lang')) {
+            this.lang = window.localStorage.getItem('lang')
+          }
+          // if a file is dragged on the page, change body class to "drag-in"
+          document.body.addEventListener('dragover', (e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            document.body.classList.add('drag-in')
+          })
+          document.body.addEventListener('dragleave', (e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            document.body.classList.remove('drag-in')
+          })
+          document.body.addEventListener('drop', (e) => {
+            document.body.classList.remove('drag-in')
+          })
+        },
+        watch: {
+          customColor: function (val) {
+            if (val != '#000000' && val.replace(' ', '') != 'rgb(0,0,0)') {
+              this.color = val
+              this.gradient = false
+              this.generateNewQRCode()
             }
           },
         },
+        computed: {
+          // generate CSS background
+          colorPreview () {
+            if (this.gradient) {
+              return 'background: linear-gradient(' + this.gradient.rotation + 'deg, ' + this.gradient.colorStops[0].color + ' 0%, ' + this.gradient.colorStops[1].color + ' 100%)'
+            } else {
+              return 'background: ' + this.color
+            }
+          },
+          darkEnough() {
+            if (this.gradient) {
+              return true
+            } else {
+              const c = this.colorToRgb(this.color)
+              const cc = this.contrastChecker(c[0], c[1], c[2])
+              return cc
+            }
+          }
+        },
         methods: {
+          onFileChange(e) {
+            const file = e.target.files[0];
+            const that = this
+            this.hasLogo = true
+            if (file) {
+              var reader = new FileReader()
+              reader.readAsDataURL(file)
+              reader.onload = function () {
+                that.logo = reader.result
+                that.generateNewQRCode()
+              }
+            }
+          },
+          changeLang(lang) {
+            this.lang = lang
+            window.localStorage.setItem('lang', lang)
+            this.toggleLangBar()
+          },
           isValidHttpUrl(string) {
             let url;
             try {
@@ -119,7 +326,145 @@
           },
           toggleLangBar() {
             this.langBar = this.langBar === "languages hidden" ? "languages" : "languages hidden"
-          }
+          },
+          changeColor(color) {
+            this.customColor = '#000000'
+            this.color = color
+            this.gradient = false
+            this.generateNewQRCode()
+          },
+          changeGradient(color1, color2, type, rotation) {
+            this.customColor = '#000000'
+            this.color = false
+            this.gradient = {
+              type: type,
+              rotation: rotation,
+              colorStops: [
+                { color: color1, offset: 0 },
+                { color: color2, offset: 1 }
+              ]
+            }
+            this.generateNewQRCode()
+          },
+          hexToRgb(hex) {
+            const color = (hex.charAt(0) === '#') ? hex.substring(1, 7) : hex;
+            const r = parseInt(color.slice(1, 3), 16)
+            const g = parseInt(color.slice(3, 5), 16)
+            const b = parseInt(color.slice(5, 7), 16)
+            return [r, g, b]
+          },
+          colorToRgb(color) {
+            if (color.charAt(0) === '#') {
+              return this.hexToRgb(color)
+            } else if (color.substring(0, 3) === 'rgb') {
+              return color.replace('rgb(', '').replace(')', '').replace(' ', '').split(',')
+            } else if (color.substring(0, 4) === 'rgba') {
+              return color.replace('rgba(', '').replace(')', '').replace(' ', '').split(',').slice(0, 3)
+            } else if (color.substring(0, 4) === 'hsla') {
+              const hsla = color.replace('hsla(', '').replace(')', '').replace(' ', '').split(',')
+              const h = hsla[0]
+              const s = hsla[1]
+              const l = hsla[2]
+              const a = hsla[3]
+              const rgb = this.hslToRgb(h, s, l)
+              return [rgb[0], rgb[1], rgb[2], a]
+            } else if (color.substring(0, 3) === 'hsl') {
+              const hsl = color.replace('hsl(', '').replace(')', '').split(', ')
+              const h = hsl[0]
+              const s = hsl[1]
+              const l = hsl[2]
+              const rgb = this.hslToRgb(h, s, l)
+              return [rgb[0], rgb[1], rgb[2]]
+            }
+          },
+          hslToRgb(h, s, l) {
+            let r, g, b;
+            if (s == 0) {
+              r = g = b = l; // achromatic
+            } else {
+              const hue2rgb = function hue2rgb(p, q, t) {
+                if (t < 0) t += 1;
+                if (t > 1) t -= 1;
+                if (t < 1/6) return p + (q - p) * 6 * t;
+                if (t < 1/2) return q;
+                if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                return p;
+              }
+              const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+              const p = 2 * l - q;
+              r = hue2rgb(p, q, h + 1/3);
+              g = hue2rgb(p, q, h);
+              b = hue2rgb(p, q, h - 1/3);
+            }
+            return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+          },
+          contrastChecker(r, g, b) {
+            const uicolors = [r / 255, g / 255, b / 255];
+            const c = uicolors.map((col) => {
+              if (col <= 0.03928) {
+                return col / 12.92;
+              }
+              return Math.pow((col + 0.055) / 1.055, 2.4);
+            });
+            const L = (0.2126 * c[0]) + (0.7152 * c[1]) + (0.0722 * c[2]);
+            return (L < 0.22);
+          },
+          generateNewQRCode() {
+            return new Promise((resolve, reject) => {
+              if (this.isValidHttpUrl(this.text)) {
+                this.qrcodeOptions.data = this.text
+                if (this.gradient) {
+                  this.qrcodeOptions.dotsOptions.gradient = this.gradient
+                  this.qrcodeOptions.cornersSquareOptions.gradient = this.gradient
+                  this.qrcodeOptions.cornersDotOptions.gradient = this.gradient
+                } else if (this.color) {
+                  this.qrcodeOptions.dotsOptions.gradient = null
+                  this.qrcodeOptions.cornersSquareOptions.gradient = null
+                  this.qrcodeOptions.cornersDotOptions.gradient = null
+                  this.qrcodeOptions.dotsOptions.color = this.color
+                  this.qrcodeOptions.cornersSquareOptions.color = this.color
+                  this.qrcodeOptions.cornersDotOptions.color = this.color
+                }
+                if (this.style) {
+                  switch(this.style) {
+                    case 'lines':
+                      this.qrcodeOptions.dotsOptions.type = 'extra-rounded'
+                      this.qrcodeOptions.cornersSquareOptions.type = 'extra-rounded'
+                      this.qrcodeOptions.cornersDotOptions.type = 'dot'
+                      break
+                    case 'round':
+                      this.qrcodeOptions.dotsOptions.type = 'dots'
+                      this.qrcodeOptions.cornersSquareOptions.type = 'dot'
+                      this.qrcodeOptions.cornersDotOptions.type = 'dot'
+                      break
+                    case 'square':
+                      this.qrcodeOptions.dotsOptions.type = 'square'
+                      this.qrcodeOptions.cornersSquareOptions.type = 'square'
+                      this.qrcodeOptions.cornersDotOptions.type = 'square'
+                      break
+                  }
+                }
+                if (this.logo && this.hasLogo) {
+                  this.qrcodeOptions.image = this.logo
+                } else {
+                  this.qrcodeOptions.image = null
+                }
+                this.qrcode.update(this.qrcodeOptions)
+                this.qrcode.getRawData('png').then(( blob ) => {
+                  const reader = new FileReader();
+                  reader.onloadend = () => {
+                    this.qrcodeImage = reader.result
+                    resolve(reader.result);
+                  }
+                  reader.readAsDataURL(blob);
+                })
+              } else {
+                // Empty image
+                this.qrcodeImage = 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA='
+                resolve(this.qrcodeImage)
+              }
+            })
+          },
         },
       })
     </script>

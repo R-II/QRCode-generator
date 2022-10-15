@@ -14,9 +14,15 @@ body {
   text-align: center;
   color: #fff;
   background: #006699;
-  padding: 15px 15px 30px 15px;
-  margin: 0 auto;
+  padding: 15px 15px 100px 15px;
+  margin: 0;
+  position: relative;
+  min-height: calc(100vh - 115px);
+}
+
+#app {
   max-width: 300px;
+  margin: 0 auto;
 }
 
 input {
@@ -51,11 +57,11 @@ input:hover {
   display: block;
   padding: 15px;
   background-color: #fff;
-  position: fixed;
-  bottom: 0;
+  text-align: center;
+  position: absolute;
   left: 0;
   right: 0;
-  text-align: center;
+  bottom: 0;
 }
 
 #footer h3 {
@@ -80,7 +86,7 @@ input:hover {
   background: #fff;
   color: #006699;
   padding: 5px 8px;
-  font-size: 30px;
+  font-size: 25px;
   text-decoration: none;
   display: inline-block;
   transition: 1s;
@@ -101,7 +107,7 @@ input:hover {
   transition: 1s;
 }
 .languages.hidden {
-  right: -155px;
+  right: -230px;
 }
 .languages span {
   cursor: pointer;
@@ -117,7 +123,9 @@ input:hover {
 .qrcode {
   width: 300px;
 }
-.colors {
+.colors,
+.styles,
+.logo {
   width: 270px;
   background: #fff;
   transition: 1s;
@@ -125,8 +133,10 @@ input:hover {
   display: block;
   margin: auto;
   margin-bottom: 15px;
+  color: #006699;
 }
-.color {
+.color,
+.style-item {
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -134,4 +144,94 @@ input:hover {
   margin: 5px;
   cursor: pointer;
   margin-bottom: 0;
+}
+.color-btn {
+  padding: 5px 8px;
+  font-size: 16px;
+  color: #000;
+  border: 2px solid #000;
+  margin-top: 5px;
+  cursor: pointer;
+}
+body .verte__guide {
+  width: unset;
+  height: unset;
+}
+.warn-contrast {
+  color: #fff;
+  background: #990000;
+  padding: 5px 8px;
+  font-size: 16px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.logo input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+  margin: 0 5px 0 0;
+}
+.logo input[type="file"] {
+  opacity: 0;
+  transition: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 51px;
+  cursor: pointer;
+}
+body.drag-in .logo input[type="file"] {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  z-index: 999;
+  color: #fff;
+  background: #fff;
+}
+.logo .dropin {
+  display: none;
+}
+body.drag-in .logo .dropin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 50px;
+  color: #006699;
+  background: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo label[for="logoFile"] {
+  display: inline-block;
+  padding: 5px 8px;
+  font-size: 25px;
+  color: #000;
+  border: 2px solid #000;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.logo label {
+  font-size: 25px;
+  cursor: pointer;
+}
+.logo-hidden {
+  height: 0;
+  overflow: hidden;
+}
+.logo-visible {
+  position: relative;
+}
+body.dropin {
+  overflow: visible;
+}
+.logo-preview {
+  max-height: 25px; max-width: 100px; vertical-align: bottom;
 }
