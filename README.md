@@ -19,11 +19,9 @@ Create <strong> QRCode </strong> easily with this VueJs application.
 
 This project was developed with the following technologies:
 
-- [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [VueJs](https://vuejs.org/)
-- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
-- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [QR Code Styling](https://github.com/kozakdenys/qr-code-styling)
+- [Verte Color Picker](https://baianat.github.io/verte/)
 
 ## :memo: License
 
