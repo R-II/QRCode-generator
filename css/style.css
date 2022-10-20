@@ -240,6 +240,7 @@ body.drag-in .logo .dropin {
 }
 .logo-hidden {
   height: 0;
+  position: relative;
   overflow: hidden;
 }
 .logo-visible {
